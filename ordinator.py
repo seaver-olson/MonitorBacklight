@@ -13,14 +13,15 @@ import pyautogui
 
 
 #find average color of each section
-TRavg = pyautogui.screenshot(region=(0,0,1920/2,1080/2)).getcolors()
-TLavg = pyautogui.screenshot(region=(1920/2,0,1920/2,1080/2)).getcolors()
-BRavg = pyautogui.screenshot(region=(0,1080/2,1920/2,1080/2)).getcolors()
-BLavg = pyautogui.screenshot(region=(1920/2,1080/2,1920/2,1080/2)).getcolors()
-Tavg = pyautogui.screenshot(region=(0,0,1920,1080/2)).getcolors()
-Bavg = pyautogui.screenshot(region=(0,1080/2,1920,1080/2)).getcolors()
-Lavg = pyautogui.screenshot(region=(0,0,1920/2,1080)).getcolors()
-Ravg = pyautogui.screenshot(region=(1920/2,0,1920/2,1080)).getcolors()
+TRavg = pyautogui.screenshot(region=(0,0,1920/2,1080/2))
+TLavg = pyautogui.screenshot(region=(1920/2,0,1920/2,1080/2))
+BRavg = pyautogui.screenshot(region=(0,1080/2,1920/2,1080/2))
+BLavg = pyautogui.screenshot(region=(1920/2,1080/2,1920/2,1080/2))
+Tavg = pyautogui.screenshot(region=(0,0,1920,1080/2))
+Bavg = pyautogui.screenshot(region=(0,1080/2,1920,1080/2))
+Lavg = pyautogui.screenshot(region=(0,0,1920/2,1080))
+Ravg = pyautogui.screenshot(region=(1920/2,0,1920/2,1080))
+TRavg, TLavg, BRavg, BLavg, Tavg, Bavg, Lavg, Ravg = TRavg.getcolors(TRavg.size[0]*TRavg.size[1]), TLavg.getcolors(TLavg.size[0]*TLavg.size[1]), BRavg.getcolors(BRavg.size[0]*BRavg.size[1]), BLavg.getcolors(BLavg.size[0]*BLavg.size[1]), Tavg.getcolors(Tavg.size[0]*Tavg.size[1]), Bavg.getcolors(Bavg.size[0]*Bavg.size[1]), Lavg.getcolors(Lavg.size[0]*Lavg.size[1]), Ravg.getcolors(Ravg.size[0]*Ravg.size[1])
 #print all colors
 print(TRavg)
 print(TLavg)
