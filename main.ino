@@ -1,3 +1,8 @@
+/*
+Seaver Olson
+Project: LED Strip Monitor 
+Date: 3/15/2023
+*/
 #include <FastLED.h>//not an error Ignore please
 #define NUM_LEDS 60
 #define DATA_PIN 6
@@ -9,25 +14,12 @@ void setup() {
 }
 void loop() {
     String screenColor = getScreenColor();
-    
+
 }
 void getScreenColor(){
-    //get color of pixel
-    //top right
-    String TR = getPixelColor(0,0);
-    String TL = getPixelColor(0,sMax);
-    String TM = getScreenColor(0,sMax/2);
-    String BR = getPixelColor(sMax,0);
-    String BL = getPixelColor(sMax,sMax);
-    String BM = getScreenColor(sMax,sMax/2);
-    String ML = getScreenColor(sMax/2,0);
-    String MR = getScreenColor(sMax/2,sMax);
-    return TR +'|'+TM+'|'+TL+'|'+ BR+'|'+ BL+'|'+BM+'|'+ML+'|'+ MR;
-}
-String getPixelColor(int x, int y){
-    //return will be in the form of hex Ex: #FFFFFF
-    //get color of pixel
-    //return color
+    if Serial.available(){
+        String color = Serial.readStringUntil('\n');
+    }
 }
 
 /*
