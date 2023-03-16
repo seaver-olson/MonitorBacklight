@@ -1,5 +1,7 @@
 from PIL import ImageGrab#used to take screenshot
 import tkinter as tk#used to get screen size
+import serial#used to send data to arduino
+import time
 
 #get screen size
 root = tk.Tk()
@@ -25,12 +27,11 @@ def get_average_color(box):
     for pixel in pixels:
         r += pixel[0]             
         g += pixel[1]     
-        b += pixel[2]             
+        b += pixel[2]   
     avg_r, avg_g, avg_b = [x // num_pixels for x in (r, g, b)]
-    #convert rgb to hex
-    return '{:02x}{:02x}{:02x}'.format(avg_r, avg_g, avg_b)
+
+    return str('%02x%02x%02x' % (avg_r, avg_g, avg_b))
     
- 
 
 #function that combines all average colors into string in hex format ex : ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
 def get_all_colors():
@@ -39,4 +40,13 @@ def get_all_colors():
         + "|" + get_average_color(bottom_right) + "|" + get_average_color(middle_left) 
         + "|" + get_average_color(middle_right) + "|" + get_average_color(top_middle) 
         + "|" + get_average_color(bottom_middle))
-print(get_all_colors())
+def sendSerial(hX):
+    ser = serial.Serial('COM3', 9600)
+    ser.write(hX)
+    ser.close()
+
+while True:
+    sendSerial(get_all_colors())
+    time.sleep(0.1)
+
+    
