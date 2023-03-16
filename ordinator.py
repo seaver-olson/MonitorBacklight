@@ -1,8 +1,4 @@
-from PIL import ImageGrab#used to take screenshot
-import tkinter as tk#used to get screen size
-import serial#used to send data to arduino
-import time
-
+import serial, time, tkinter as tk, PIL.ImageGrab as ImageGrab
 #get screen size
 root = tk.Tk()
 screen_width = root.winfo_screenwidth()
@@ -16,7 +12,7 @@ middle_left = tuple(map(int, (0, 0.25 * screen_height, 0.5 * screen_width, 0.75 
 middle_right = tuple(map(int, (0.5 * screen_width, 0.25 * screen_height, screen_width, 0.75 * screen_height)))
 top_middle = tuple(map(int, (0.25 * screen_width, 0, 0.75 * screen_width, 0.5 * screen_height)))
 bottom_middle = tuple(map(int, (0.25 * screen_width, 0.5 * screen_height, 0.75 * screen_width, screen_height)))
-
+#rename the variables like your a pirate
 
 # Define a function to calculate the average pixel color in a given section of the screen
 def get_average_color(box):
