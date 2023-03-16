@@ -45,20 +45,9 @@ def get_average_color(box):
 
 #function that combines all average colors into string in hex format ex : ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
 def get_all_colors():
-    colors = get_average_color(top_left)
-    colors+= "|"
-    colors += get_average_color(top_right)
-    colors += "|"
-    colors += get_average_color(bottom_left)
-    colors+= "|"
-    colors += get_average_color(bottom_right)
-    colors+= "|"
-    colors += get_average_color(middle_left)
-    colors+= "|"
-    colors += get_average_color(middle_right)
-    colors+= "|"
-    colors += get_average_color(top_middle)
-    colors+= "|"
-    colors += get_average_color(bottom_middle)
-    return colors
+    return (get_average_color(top_left) + "|" + 
+            get_average_color(top_right) + "|" + get_average_color(bottom_left) 
+        + "|" + get_average_color(bottom_right) + "|" + get_average_color(middle_left) 
+        + "|" + get_average_color(middle_right) + "|" + get_average_color(top_middle) 
+        + "|" + get_average_color(bottom_middle))
 print(get_all_colors())
