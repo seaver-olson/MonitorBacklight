@@ -20,11 +20,16 @@ void setup() {
 }
 void loop() {
     String screenColor = getScreenColor();
+    top_left, top_right, bottom_left, bottom_right, middle_left, middle_right, top_middle, bottom_middle = screenColor.split("|");
 
 }
 void getScreenColor(){
-    if Serial.available(){
+    //ordinator.py will return a string of the color of the screen
+    //listen for the string once a line is recieved stop listening and take the most recent line
+    //return the string
+    if (Serial.available() > 0) {
         String color = Serial.readStringUntil('\n');
+        return color;
     }
 }
 
