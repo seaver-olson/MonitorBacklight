@@ -1,32 +1,64 @@
-from PIL import ImageGrab
+from PIL import ImageGrab#used to take screenshot
+import tkinter as tk#used to get screen size
 
+#get screen size
+root = tk.Tk()
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
 # Define the coordinates for each section of the screen
-top_left = (0, 0, 640, 360)      # top left
-top_right = (640, 0, 1280, 360)  # top right
-bottom_left = (0, 360, 640, 720) # bottom left
-bottom_right = (640, 360, 1280, 720) # bottom right
-middle_left = (0, 180, 320, 540) # middle left
-middle_right = (960, 180, 1280, 540) # middle right
+#define them proportionally to the screen size using formulas
+top_left = (0, 0, 0.5 * screen_width, 0.5 * screen_height)
+top_right = (0.5 * screen_width, 0, screen_width, 0.5 * screen_height)
+bottom_left = (0, 0.5 * screen_height, 0.5 * screen_width, screen_height)
+bottom_right = (0.5 * screen_width, 0.5 * screen_height, screen_width, screen_height)
+middle_left = (0, 0.25 * screen_height, 0.5 * screen_width, 0.75 * screen_height)
+middle_right = (0.5 * screen_width, 0.25 * screen_height, screen_width, 0.75 * screen_height)
+top_middle = (0.25 * screen_width, 0, 0.75 * screen_width, 0.5 * screen_height)
+bottom_middle = (0.25 * screen_width, 0.5 * screen_height, 0.75 * screen_width, screen_height)
+
+#make sure every value in tuple is int
+top_left = tuple(map(int, top_left))
+top_right = tuple(map(int, top_right))
+bottom_left = tuple(map(int, bottom_left))
+bottom_right = tuple(map(int, bottom_right))
+middle_left = tuple(map(int, middle_left))
+middle_right = tuple(map(int, middle_right))
+top_middle = tuple(map(int, top_middle))
+bottom_middle = tuple(map(int, bottom_middle))
+
 
 # Define a function to calculate the average pixel color in a given section of the screen
 def get_average_color(box):
-    im = ImageGrab.grab(bbox=box)  
-    pixels = im.getdata()         
-    num_pixels = len(pixels)   
+    #take image of screen first and then crop
+    pixels = ((ImageGrab.grab()).crop(box)).getdata()      
+    num_pixels = len(pixels) 
     r = g = b = 0                  
     for pixel in pixels:
-        r += pixel[0]              # Add up the red values of all the pixels
-        g += pixel[1]              # Add up the green values of all the pixels
-        b += pixel[2]              # Add up the blue values of all the pixels
-    avg_r = r // num_pixels        # Divide the total red value by the number of pixels to get the average
-    avg_g = g // num_pixels        # Divide the total green value by the number of pixels to get the average
-    avg_b = b // num_pixels        # Divide the total blue value by the number of pixels to get the average
-    return (avg_r, avg_g, avg_b)   # Return the average RGB values as a tuple
+        r += pixel[0]             
+        g += pixel[1]     
+        b += pixel[2]             
+    avg_r, avg_g, avg_b = [x // num_pixels for x in (r, g, b)]
+    #convert rgb to hex
+    return '{:02x}{:02x}{:02x}'.format(avg_r, avg_g, avg_b)
+    
+ 
 
-# Call the function for each section of the screen and print the results
-print("Top left:", get_average_color(top_left))
-print("Top right:", get_average_color(top_right))
-print("Bottom left:", get_average_color(bottom_left))
-print("Bottom right:", get_average_color(bottom_right))
-print("Middle left:", get_average_color(middle_left))
-print("Middle right:", get_average_color(middle_right))
+#function that combines all average colors into string in hex format ex : ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
+def get_all_colors():
+    colors = get_average_color(top_left)
+    colors+= "|"
+    colors += get_average_color(top_right)
+    colors += "|"
+    colors += get_average_color(bottom_left)
+    colors+= "|"
+    colors += get_average_color(bottom_right)
+    colors+= "|"
+    colors += get_average_color(middle_left)
+    colors+= "|"
+    colors += get_average_color(middle_right)
+    colors+= "|"
+    colors += get_average_color(top_middle)
+    colors+= "|"
+    colors += get_average_color(bottom_middle)
+    return colors
+print(get_all_colors())
