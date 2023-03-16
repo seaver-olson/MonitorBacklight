@@ -29,13 +29,7 @@ def get_average_color(box):
     return str('%02x%02x%02x' % (avg_r, avg_g, avg_b))
     
 
-#function that combines all average colors into string in hex format ex : ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
-def get_all_colors():
-    return (get_average_color(top_left) + "|" + 
-            get_average_color(top_right) + "|" + get_average_color(bottom_left) 
-        + "|" + get_average_color(bottom_right) + "|" + get_average_color(middle_left) 
-        + "|" + get_average_color(middle_right) + "|" + get_average_color(top_middle) 
-        + "|" + get_average_color(bottom_middle))
+def get_all_colors():return (get_average_color(top_left) + "|" + get_average_color(top_right) + "|" + get_average_color(bottom_left) + "|" + get_average_color(bottom_right) + "|" + get_average_color(middle_left) + "|" + get_average_color(middle_right) + "|" + get_average_color(top_middle) + "|" + get_average_color(bottom_middle))
 def sendSerial(hX):
     ser = serial.Serial('COM3', 9600)
     ser.write(hX)
