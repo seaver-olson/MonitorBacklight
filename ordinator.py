@@ -5,26 +5,15 @@ import tkinter as tk#used to get screen size
 root = tk.Tk()
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
-# Define the coordinates for each section of the screen
-#define them proportionally to the screen size using formulas
-top_left = (0, 0, 0.5 * screen_width, 0.5 * screen_height)
-top_right = (0.5 * screen_width, 0, screen_width, 0.5 * screen_height)
-bottom_left = (0, 0.5 * screen_height, 0.5 * screen_width, screen_height)
-bottom_right = (0.5 * screen_width, 0.5 * screen_height, screen_width, screen_height)
-middle_left = (0, 0.25 * screen_height, 0.5 * screen_width, 0.75 * screen_height)
-middle_right = (0.5 * screen_width, 0.25 * screen_height, screen_width, 0.75 * screen_height)
-top_middle = (0.25 * screen_width, 0, 0.75 * screen_width, 0.5 * screen_height)
-bottom_middle = (0.25 * screen_width, 0.5 * screen_height, 0.75 * screen_width, screen_height)
-
 #make sure every value in tuple is int
-top_left = tuple(map(int, top_left))
-top_right = tuple(map(int, top_right))
-bottom_left = tuple(map(int, bottom_left))
-bottom_right = tuple(map(int, bottom_right))
-middle_left = tuple(map(int, middle_left))
-middle_right = tuple(map(int, middle_right))
-top_middle = tuple(map(int, top_middle))
-bottom_middle = tuple(map(int, bottom_middle))
+top_left = tuple(map(int, (0, 0, 0.5 * screen_width, 0.5 * screen_height)))
+top_right = tuple(map(int, (0.5 * screen_width, 0, screen_width, 0.5 * screen_height)))
+bottom_left = tuple(map(int, (0, 0.5 * screen_height, 0.5 * screen_width, screen_height)))
+bottom_right = tuple(map(int, (0.5 * screen_width, 0.5 * screen_height, screen_width, screen_height)))
+middle_left = tuple(map(int, (0, 0.25 * screen_height, 0.5 * screen_width, 0.75 * screen_height)))
+middle_right = tuple(map(int, (0.5 * screen_width, 0.25 * screen_height, screen_width, 0.75 * screen_height)))
+top_middle = tuple(map(int, (0.25 * screen_width, 0, 0.75 * screen_width, 0.5 * screen_height)))
+bottom_middle = tuple(map(int, (0.25 * screen_width, 0.5 * screen_height, 0.75 * screen_width, screen_height)))
 
 
 # Define a function to calculate the average pixel color in a given section of the screen
