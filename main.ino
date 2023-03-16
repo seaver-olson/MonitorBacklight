@@ -11,6 +11,12 @@ CRGB leds[NUM_LEDS];//create object
 void setup() { 
     //specs: 3 pin 5v RGB LED strip
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);//defines ledtype and pin
+    //set all leds to white on start up after pause for 2 seconds
+    for(int i = 0; i < NUM_LEDS; i++){
+        leds[i] = CRGB::White;
+        FastLED.show();
+        delay(50);
+    }
 }
 void loop() {
     String screenColor = getScreenColor();
