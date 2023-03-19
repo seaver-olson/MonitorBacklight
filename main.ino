@@ -40,10 +40,17 @@ void patternRainbow(){
     //FastLED rainbow pattern
     for (int i = 0; i < NUM_LEDS; i++) {
         leds[i] = CHSV(i, 255, 255);
-    }
+        }
     FastLED.show();
     delay(1000 / 60);//60 fps
-    
+}
+void patternSolid(){
+    //solid color
+    for (int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB::Red;
+        }
+    FastLED.show();
+    delay(1000 / 60);//60 fps
 }
 /*
 Steps:

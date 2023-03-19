@@ -1,0 +1,6 @@
+- Finish adaptive lighting
+- Add sound lighting
+- create DIY website
+- integrate blynk
+- upgrade hardware
+- different patterns
