@@ -32,7 +32,19 @@ void getScreenColor(){
         return color;
     }
 }
+void patternRandom(){
+    //when the user doesn't want adaptive lighting choose from random other designs
 
+}
+void patternRainbow(){
+    //FastLED rainbow pattern
+    for (int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CHSV(i, 255, 255);
+    }
+    FastLED.show();
+    delay(1000 / 60);//60 fps
+    
+}
 /*
 Steps:
     1. Plot out the LED strip around the Monitor Screen
