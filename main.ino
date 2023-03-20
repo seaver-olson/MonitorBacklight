@@ -4,26 +4,54 @@ Project: LED Strip Monitor
 Date: 3/15/2023
 */
 #include <FastLED.h>//not an error Ignore please
-#define NUM_LEDS 60
-#define DATA_PIN 6
+#define NUM_LEDS 120
+#define DATA_PIN 8
+String top_left;
+String top_right;
+String bottom_left;
+String bottom_right;
+String middle_left;
+String middle_right;
+String top_middle;
+String bottom_middle;
+
 
 CRGB leds[NUM_LEDS];//create object
 void setup() { 
     //specs: 3 pin 5v RGB LED strip
+    Serial.begin(9600);
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);//defines ledtype and pin
     //set all leds to white on start up after pause for 2 seconds
-    for(int i = 0; i < NUM_LEDS; i++){
-        leds[i] = CRGB::White;
-        FastLED.show();
-        delay(50);
-    }
 }
 void loop() {
     String screenColor = getScreenColor();
-    top_left, top_right, bottom_left, bottom_right, middle_left, middle_right, top_middle, bottom_middle = screenColor.split("|");
+    //if serial is not empty print last line of serial
+    if (Serial.available() > 0) {
+        Serial.println(Serial.readStringUntil('\n'));
+        
+    }
+    //split string into 8 parts
+    top_left = screenColor.substring(0, 6);
+    top_right = screenColor.substring(6, 12);
+    bottom_left = screenColor.substring(12, 18);
+    bottom_right = screenColor.substring(18, 24);
+    middle_left = screenColor.substring(24, 30);
+    middle_right = screenColor.substring(30, 36);
+    top_middle = screenColor.substring(36, 42);
+    bottom_middle = screenColor.substring(42, 48);
+    //print the colors to the serial monitor
+    Serial.println(top_left);
+    Serial.println(top_right);
+    Serial.println(bottom_left);
+    Serial.println(bottom_right);
+    Serial.println(middle_left);
+    Serial.println(middle_right);
+    Serial.println(top_middle);
+    Serial.println(bottom_middle);
+      
 
 }
-void getScreenColor(){
+String getScreenColor(){
     //ordinator.py will return a string of the color of the screen
     //listen for the string once a line is recieved stop listening and take the most recent line
     //return the string
