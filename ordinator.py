@@ -16,6 +16,7 @@ bottom_middle = tuple(map(int, (0.25 * screen_width, 0.5 * screen_height, 0.75 *
 
 # Define a function to calculate the average pixel color in a given section of the screen
 def get_average_color(box):
+
     #take image of screen first and then crop
     pixels = ((ImageGrab.grab()).crop(box)).getdata()      
     num_pixels = len(pixels) 
@@ -30,13 +31,11 @@ def get_average_color(box):
     
 
 def get_all_colors():return (get_average_color(top_left) + "|" + get_average_color(top_right) + "|" + get_average_color(bottom_left) + "|" + get_average_color(bottom_right) + "|" + get_average_color(middle_left) + "|" + get_average_color(middle_right) + "|" + get_average_color(top_middle) + "|" + get_average_color(bottom_middle))
-def sendSerial(hX):
-    ser = serial.Serial('COM3', 9600)
-    ser.write(hX)
-    ser.close()
 
 while True:
-    sendSerial(get_all_colors())
+    #if serial port is available, send the data
+    if serial.Serial('/dev/tty.usbmodem14201', 9600):
+        ser = serial.Serial('/dev/tty.usbmodem14201', 9600)
+        ser.write(get_all_colors().encode())
+        ser.close()
     time.sleep(0.1)
-
-    
