@@ -31,7 +31,7 @@ def get_average_color(box):
     
 
 def get_all_colors():return (get_average_color(top_left) + "|" + get_average_color(top_right) + "|" + get_average_color(bottom_left) + "|" + get_average_color(bottom_right) + "|" + get_average_color(middle_left) + "|" + get_average_color(middle_right) + "|" + get_average_color(top_middle) + "|" + get_average_color(bottom_middle))
-
+#ex output of get_all_colors() = "ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff"
 while True:
     #if serial port is available, send the data
     if serial.Serial('/dev/tty.usbmodem14201', 9600):

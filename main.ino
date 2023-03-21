@@ -26,19 +26,15 @@ void setup() {
 void loop() {
     String screenColor = getScreenColor();
     //if serial is not empty print last line of serial
-    if (Serial.available() > 0) {
-        Serial.println(Serial.readStringUntil('\n'));
-        
-    }
     //split string into 8 parts
-    top_left = screenColor.substring(0, 6);
-    top_right = screenColor.substring(6, 12);
-    bottom_left = screenColor.substring(12, 18);
-    bottom_right = screenColor.substring(18, 24);
-    middle_left = screenColor.substring(24, 30);
-    middle_right = screenColor.substring(30, 36);
-    top_middle = screenColor.substring(36, 42);
-    bottom_middle = screenColor.substring(42, 48);
+    if (screenColor != ""){
+    top_right = screenColor.substring(7, 13);
+    bottom_left = screenColor.substring(14, 20);
+    bottom_right = screenColor.substring(21, 27);
+    middle_left = screenColor.substring(28, 34);
+    middle_right = screenColor.substring(35, 41);
+    top_middle = screenColor.substring(42, 48);
+    bottom_middle = screenColor.substring(49, 55);
     //print the colors to the serial monitor
     Serial.println(top_left);
     Serial.println(top_right);
@@ -48,9 +44,8 @@ void loop() {
     Serial.println(middle_right);
     Serial.println(top_middle);
     Serial.println(bottom_middle);
-      
-
-}
+    }
+    }
 String getScreenColor(){
     //ordinator.py will return a string of the color of the screen
     //listen for the string once a line is recieved stop listening and take the most recent line
@@ -58,6 +53,9 @@ String getScreenColor(){
     if (Serial.available() > 0) {
         String color = Serial.readStringUntil('\n');
         return color;
+    }
+    else{
+      return "";
     }
 }
 void patternRandom(){

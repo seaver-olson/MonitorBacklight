@@ -15,12 +15,20 @@ void setup() {
 }
 
 void loop() {
+  //read serial if test in last serial line blink green
   if (Serial.available() > 0) {
-    leds[0] = CRGB::Green;
-    FastLED.show();
-    delay(1000);
-    leds[0] = CRGB::Black;
-    FastLED.show();
-    delay(1000);
+    String input = Serial.readStringUntil('\n');
+    if (input == "test") {
+      Serial.println("test");
+      for (int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB::Green;
+      }
+      FastLED.show();
+      delay(1000);
+      for (int i = 0; i < NUM_LEDS; i++) {
+        leds[i] = CRGB::Black;
+      }
+      FastLED.show();
+    }
   }
 }
