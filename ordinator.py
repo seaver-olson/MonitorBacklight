@@ -7,9 +7,9 @@ screen_height = root.winfo_screenheight()
 root.destroy()
 class Ordinator:
     """get the average color of 8 boxes on the screen so that I can do less math on arduino"""
-    def __init__(self,screen_width,screen_height):
-        self.screenW = screen_width
-        self.screenH = screen_height
+    def __init__(self,sw,sh):
+        self.screenW = sw
+        self.screenH = sh
         self.top_left = tuple(map(int, (0, 0, 0.5 * self.screenW, 0.5 * self.screenH)))
         self.top_right = tuple(map(int, (0.5 * self.screenW, 0, self.screenW, 0.5 * self.screenH)))
         self.bottom_left = tuple(map(int, (0, 0.5 * self.screenH, 0.5 * self.screenW, self.screenH)))
