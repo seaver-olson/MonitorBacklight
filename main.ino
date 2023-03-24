@@ -117,19 +117,150 @@ void loop() {
     top_middle = part_num[6];
     bottom_middle = part_num[7];
     */
-    //set the color of part_num to the color of the screen
+    Serial.println(top_left);
+
+    //convert all hex nums to rgb tuples
+    int top_leftRGB = (long) strtol( &top_left[1], NULL, 16);
+    int top_rightRGB = (long) strtol( &top_right[1], NULL, 16);
+    int bottom_leftRGB = (long) strtol( &bottom_left[1], NULL, 16);
+    int bottom_rightRGB = (long) strtol( &bottom_right[1], NULL, 16);
+    int middle_leftRGB = (long) strtol( &middle_left[1], NULL, 16);
+    int middle_rightRGB = (long) strtol( &middle_right[1], NULL, 16);
+    int top_middleRGB = (long) strtol( &top_middle[1], NULL, 16);
+    int bottom_middleRGB = (long) strtol( &bottom_middle[1], NULL, 16);
+    //the above lines arent correct fix it
+    Serial.println(top_leftRGB);
+
+    //turn into rgb tuples
+    int top_leftR = (top_leftRGB >> 16);
+    int top_leftG = (top_leftRGB >> 8 & 0xFF);
+    int top_leftB = (top_leftRGB & 0xFF);
+    int top_rightR = (top_rightRGB >> 16);
+    int top_rightG = (top_rightRGB >> 8 & 0xFF);
+    int top_rightB = (top_rightRGB & 0xFF);
+    int bottom_leftR = (bottom_leftRGB >> 16);
+    int bottom_leftG = (bottom_leftRGB >> 8 & 0xFF);
+    int bottom_leftB = (bottom_leftRGB & 0xFF);
+    int bottom_rightR = (bottom_rightRGB >> 16);
+    int bottom_rightG = (bottom_rightRGB >> 8 & 0xFF);
+    int bottom_rightB = (bottom_rightRGB & 0xFF);
+    int middle_leftR = (middle_leftRGB >> 16);
+    int middle_leftG = (middle_leftRGB >> 8 & 0xFF);
+    int middle_leftB = (middle_leftRGB & 0xFF);
+    int middle_rightR = (middle_rightRGB >> 16);
+    int middle_rightG = (middle_rightRGB >> 8 & 0xFF);
+    int middle_rightB = (middle_rightRGB & 0xFF);
+    int top_middleR = (top_middleRGB >> 16);
+    int top_middleG = (top_middleRGB >> 8 & 0xFF);
+    int top_middleB = (top_middleRGB & 0xFF);
+    int bottom_middleR = (bottom_middleRGB >> 16);
+    int bottom_middleG = (bottom_middleRGB >> 8 & 0xFF);
+    int bottom_middleB = (bottom_middleRGB & 0xFF);
+    //if the color is negative make it positive
+    if (top_leftR < 0){
+        top_leftR = top_leftR * -1;
+    }
+    if (top_leftG < 0){
+        top_leftG = top_leftG * -1;
+    }
+    if (top_leftB < 0){
+        top_leftB = top_leftB * -1;
+    }
+    if (top_rightR < 0){
+        top_rightR = top_rightR * -1;
+    }
+    if (top_rightG < 0){
+        top_rightG = top_rightG * -1;
+    }
+    if (top_rightB < 0){
+        top_rightB = top_rightB * -1;
+    }
+    if (bottom_leftR < 0){
+        bottom_leftR = bottom_leftR * -1;
+    }
+    if (bottom_leftG < 0){
+        bottom_leftG = bottom_leftG * -1;
+    }
+    if (bottom_leftB < 0){
+        bottom_leftB = bottom_leftB * -1;
+    }
+    if (bottom_rightR < 0){
+        bottom_rightR = bottom_rightR * -1;
+    }
+    if (bottom_rightG < 0){
+        bottom_rightG = bottom_rightG * -1;
+    }
+    if (bottom_rightB < 0){
+        bottom_rightB = bottom_rightB * -1;
+    }
+    if (middle_leftR < 0){
+        middle_leftR = middle_leftR * -1;
+    }
+    if (middle_leftG < 0){
+        middle_leftG = middle_leftG * -1;
+    }
+    if (middle_leftB < 0){
+        middle_leftB = middle_leftB * -1;
+    }
+    if (middle_rightR < 0){
+        middle_rightR = middle_rightR * -1;
+    }
+    if (middle_rightG < 0){
+        middle_rightG = middle_rightG * -1;
+    }
+    if (middle_rightB < 0){
+        middle_rightB = middle_rightB * -1;
+    }
+    if (top_middleR < 0){
+        top_middleR = top_middleR * -1;
+    }
+    if (top_middleG < 0){
+        top_middleG = top_middleG * -1;
+    }
+    if (top_middleB < 0){
+        top_middleB = top_middleB * -1;
+    }
+    if (bottom_middleR < 0){
+        bottom_middleR = bottom_middleR * -1;
+    }
+    if (bottom_middleG < 0){
+        bottom_middleG = bottom_middleG * -1;
+    }
+    if (bottom_middleB < 0){
+        bottom_middleB = bottom_middleB * -1;
+    }
+
+    Serial.println(top_rightR);
+    Serial.println(top_rightG);
+    Serial.println(top_rightB);
+
+    //make tuples
+    CRGB Ctop_leftRGB = CRGB(top_leftR, top_leftG, top_leftB);
+    CRGB Ctop_rightRGB = CRGB(top_rightR, top_rightG, top_rightB);
+    CRGB Cbottom_leftRGB = CRGB(bottom_leftR, bottom_leftG, bottom_leftB);
+    CRGB Cbottom_rightRGB = CRGB(bottom_rightR, bottom_rightG, bottom_rightB);
+    CRGB Cmiddle_leftRGB = CRGB(middle_leftR, middle_leftG, middle_leftB);
+    CRGB Cmiddle_rightRGB = CRGB(middle_rightR, middle_rightG, middle_rightB);
+    CRGB Ctop_middleRGB = CRGB(top_middleR, top_middleG, top_middleB);
+    CRGB Cbottom_middleRGB = CRGB(bottom_middleR, bottom_middleG, bottom_middleB);
+
+    //print the colors to the serial monitor
+    Serial.print("top_left: ");
+    Serial.println(Ctop_leftRGB);
+
     for (int i = 0; i < part_num; i++){
         //set to hex of top_left
-        Serial.print(top_left);
+        
         //leds 0-15 = top_left
-        leds[i] = (top_left,HEX);
-        leds[i+part_num] = (top_right,HEX);
-        leds[i+(part_num*2)] = (bottom_left,HEX);
-        leds[i+(part_num*3)] = (bottom_right,HEX);
-        leds[i+(part_num*4)] = (middle_left,HEX);
-        leds[i+(part_num*5)] = (middle_right,HEX);
-        leds[i+(part_num*6)] = (top_middle,HEX);
-        leds[i+(part_num*7)] = (bottom_middle,HEX);
+        leds[i] = Ctop_leftRGB;
+        leds[i+part_num] = Ctop_rightRGB;
+        leds[i+part_num*2] = Cbottom_leftRGB;
+        leds[i+part_num*3] = Cbottom_rightRGB;
+        leds[i+part_num*4] = Cmiddle_leftRGB;
+        leds[i+part_num*5] = Cmiddle_rightRGB;
+        leds[i+part_num*6] = Ctop_middleRGB;
+        leds[i+part_num*7] = Cbottom_middleRGB;
+        
         
         //add8e6|add8e6|add8e6|add8e6|add8e6|add8e6|add8e6|add8e6
     }
