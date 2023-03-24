@@ -6,14 +6,8 @@ Date: 3/15/2023
 #include <FastLED.h>//not an error Ignore please
 #define NUM_LEDS 120
 #define DATA_PIN 8
-String top_left;
-String top_right;
-String bottom_left;
-String bottom_right;
-String middle_left;
-String middle_right;
-String top_middle;
-String bottom_middle;
+
+String top_left, top_right, bottom_left, bottom_right, middle_left, middle_right, top_middle, bottom_middle;
 
 const int part_num = NUM_LEDS / 8;
 //create objects that represent the parts of the LED strip
