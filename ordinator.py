@@ -42,9 +42,10 @@ class Ordinator:
     #turn get_all_colors into a class method
     def get_all_colors(self):
         """Returns a string of all the colors in the order of the boxes"""
-        return (self.get_average_color(self.top_left) + "|" + self.get_average_color(self.top_right) + "|" + self.get_average_color(self.bottom_left) + "|" + self.get_average_color(self.bottom_right) + "|" + self.get_average_color(self.middle_left) + "|" + self.get_average_color(self.middle_right) + "|" + self.get_average_color(self.top_middle) + "|" + self.get_average_color(self.bottom_middle))
+        return (self.get_average_color(self.top_left)+self.get_average_color(self.top_right) +  self.get_average_color(self.bottom_left) + self.get_average_color(self.bottom_right) +self.get_average_color(self.middle_left) +  self.get_average_color(self.middle_right) + self.get_average_color(self.top_middle) +  self.get_average_color(self.bottom_middle))
     #example output 255  ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
 Ord = Ordinator(screen_width,screen_height)
+
 while True:
     ser = serial.Serial('/dev/tty.usbmodem14201', 9600)
     ser.write(Ord.get_all_colors().encode())
