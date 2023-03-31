@@ -21,6 +21,7 @@ class Ordinator:
     #turn get_average_color into a class method
     def get_average_color(self,box):
         """Uses PIL to get the average color of a box on the screen"""
+        #get screenshot with all windows that are pulled up not just background
         pixels = ((ImageGrab.grab()).crop(box)).getdata()
         num_pixels = len(pixels)
         r = g = b = 0
@@ -44,6 +45,7 @@ class Ordinator:
         """Returns a string of all the colors in the order of the boxes"""
         return (self.get_average_color(self.top_left)+self.get_average_color(self.top_right) +  self.get_average_color(self.bottom_left) + self.get_average_color(self.bottom_right) +self.get_average_color(self.middle_left) +  self.get_average_color(self.middle_right) + self.get_average_color(self.top_middle) +  self.get_average_color(self.bottom_middle))
     #example output 255  ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
+    #or 255255255255255255255255255255255255255255255255255255255255255255255255
 Ord = Ordinator(screen_width,screen_height)
 
 while True:
