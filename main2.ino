@@ -7,6 +7,7 @@ void setup() {
     //specs: 3 pin 5v RGB LED strip
     Serial.begin(9600);
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);//defines ledtype and pin
+    FastLED.setBrightness(100);
 }
 String getScreenColor(){
     //ordinator.py will return a string of the color of the screen
@@ -80,9 +81,8 @@ void loop(){
         leds[i + part_num * 6].b = top_middle_ar[2];
         leds[i + part_num * 7].r = bottom_middle_ar[0];
         leds[i + part_num * 7].g = bottom_middle_ar[1];
-        leds[i + part_num * 7].b = bottom_middle_ar[2]; 
-        FastLED.setBrightness(100);
-      FastLED.show();
-      delay(500);  
+        leds[i + part_num * 7].b = bottom_middle_ar[2];  
     }
+  FastLED.show();
+  delay(500); 
 }}
