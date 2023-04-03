@@ -47,9 +47,10 @@ class Ordinator:
     #example output 255  ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
     #or 255255255255255255255255255255255255255255255255255255255255255255255255
 Ord = Ordinator(screen_width,screen_height)
-
+ser = serial.Serial('/dev/tty.usbmodem14101', 9600)
 while True:
-    ser = serial.Serial('/dev/tty.usbmodem14201', 9600)
-    ser.write(Ord.get_all_colors().encode())
-    ser.close()
-    time.sleep(5)
+    x =Ord.get_all_colors()
+    ser.write(x.encode())
+    print(x)
+    time.sleep(.5)
+
