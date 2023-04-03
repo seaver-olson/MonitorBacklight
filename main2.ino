@@ -116,5 +116,5 @@ void loop(){
         
     }
   FastLED.show();
-  delay(500); 
+  delay(200); 
 }}
