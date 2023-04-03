@@ -40,48 +40,80 @@ void loop(){
         //007176211019177211015171206015171205004168204012171205011175210021166199
         int top_left_ar[2];
         formatRGB(top_left_ar, 3, top_left);
-        Serial.println(top_left_ar[0]);
+        int top_left_r = top_left_ar[0];
+        int top_left_g = top_left_ar[1];
+        int top_left_b = top_left_ar[2];
+
         int top_right_ar[2];
         formatRGB(top_right_ar, 3, top_right);
+        int top_right_r = top_right_ar[0];
+        int top_right_g = top_right_ar[1];
+        int top_right_b = top_right_ar[2];
+
         int bottom_left_ar[2];
         formatRGB(bottom_left_ar, 3, bottom_left);
+        int bottom_left_r = bottom_left_ar[0];
+        int bottom_left_g = bottom_left_ar[1];
+        int bottom_left_b = bottom_left_ar[2];
+
         int bottom_right_ar[2];
         formatRGB(bottom_right_ar, 3, bottom_right);
+        int bottom_right_r = bottom_right_ar[0];
+        int bottom_right_g = bottom_right_ar[1];
+        int bottom_right_b = bottom_right_ar[2];
+
         int middle_left_ar[2];
         formatRGB(middle_left_ar, 3, middle_left);
+        int middle_left_r = middle_left_ar[0];
+        int middle_left_g = middle_left_ar[1];
+        int middle_left_b = middle_left_ar[2];
+
         int middle_right_ar[2];
         formatRGB(middle_right_ar, 3, middle_right);
+        int middle_right_r = middle_right_ar[0];
+        int middle_right_g = middle_right_ar[1];
+        int middle_right_b = middle_right_ar[2];
+
         int top_middle_ar[2];
         formatRGB(top_middle_ar, 3, top_middle);
-        int bottom_middle_ar[2];
-        formatRGB(bottom_middle_ar, 3, bottom_middle);
+        int top_middle_r = top_middle_ar[0];
+        int top_middle_g = top_middle_ar[1];
+        int top_middle_b = top_middle_ar[2];
 
+        int bottom_middle_ar[2];
+        formatRGB(bottom_middle_ar, 3, bottom_middle);  
+        int bottom_middle_r = bottom_middle_ar[0];
+        int bottom_middle_g = bottom_middle_ar[1];
+        int bottom_middle_b = bottom_middle_ar[2];
+
+        Serial.println(top_left_r);
     for (int i = 0; i < part_num; i++){
-        Serial.println(top_left_ar[0]);
-        leds[i].r = top_left_ar[0];
-        leds[i].g = top_left_ar[1];
-        leds[i].b = top_left_ar[2];
-        leds[i + part_num].r = top_right_ar[0];
-        leds[i + part_num].g = top_right_ar[1];
-        leds[i + part_num].b = top_right_ar[2];
-        leds[i + part_num * 2].r = bottom_left_ar[0];
-        leds[i + part_num * 2].g = bottom_left_ar[1];
-        leds[i + part_num * 2].b = bottom_left_ar[2];
-        leds[i + part_num * 3].r = bottom_right_ar[0];
-        leds[i + part_num * 3].g = bottom_right_ar[1];
-        leds[i + part_num * 3].b = bottom_right_ar[2];
-        leds[i + part_num * 4].r = middle_left_ar[0];
-        leds[i + part_num * 4].g = middle_left_ar[1];
-        leds[i + part_num * 4].b = middle_left_ar[2];
-        leds[i + part_num * 5].r = middle_right_ar[0];
-        leds[i + part_num * 5].g = middle_right_ar[1];
-        leds[i + part_num * 5].b = middle_right_ar[2];
-        leds[i + part_num * 6].r = top_middle_ar[0];
-        leds[i + part_num * 6].g = top_middle_ar[1];
-        leds[i + part_num * 6].b = top_middle_ar[2];
-        leds[i + part_num * 7].r = bottom_middle_ar[0];
-        leds[i + part_num * 7].g = bottom_middle_ar[1];
-        leds[i + part_num * 7].b = bottom_middle_ar[2];  
+        
+        leds[i].r = top_left_r;
+        leds[i].g = top_left_g;
+        leds[i].b = top_left_b;
+        leds[i + part_num].r = top_middle_r;
+        leds[i + part_num].g = top_middle_g;
+        leds[i + part_num].b = top_middle_b;
+        leds[i + part_num * 2].r = top_right_r;
+        leds[i + part_num * 2].g = top_right_g;
+        leds[i + part_num * 2].b = top_right_b;
+        leds[i + part_num * 3].r = middle_left_r;
+        leds[i + part_num * 3].g = middle_left_g;
+        leds[i + part_num * 3].b = middle_left_b;
+        leds[i + part_num * 4].r = middle_right_r;
+        leds[i + part_num * 4].g = middle_right_g;
+        leds[i + part_num * 4].b = middle_right_b;
+        leds[i + part_num * 5].r = bottom_left_r;
+        leds[i + part_num * 5].g = bottom_left_g;
+        leds[i + part_num * 5].b = bottom_left_b;
+        leds[i + part_num * 6].r = bottom_middle_r;
+        leds[i + part_num * 6].g = bottom_middle_g;
+        leds[i + part_num * 6].b = bottom_middle_b;
+        leds[i + part_num * 7].r = bottom_right_r;
+        leds[i + part_num * 7].g = bottom_right_g;
+        leds[i + part_num * 7].b = bottom_right_b;
+        
     }
   FastLED.show();
   delay(500); 
