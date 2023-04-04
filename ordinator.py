@@ -8,6 +8,7 @@ root.destroy()
 class Ordinator:
     """get the average color of 8 boxes on the screen so that I can do less math on arduino"""
     def __init__(self,sw,sh):
+        self.pixels = (ImageGrab.grab())
         self.screenW = sw
         self.screenH = sh
         self.top_left = tuple(map(int, (0, 0, 0.5 * self.screenW, 0.5 * self.screenH)))
@@ -22,7 +23,7 @@ class Ordinator:
     def get_average_color(self,box):
         """Uses PIL to get the average color of a box on the screen"""
         #get screenshot with all windows that are pulled up not just background
-        pixels = ((ImageGrab.grab()).crop(box)).getdata()
+        pixels = (self.pixels.crop(box)).getdata()
         num_pixels = len(pixels)
         r = g = b = 0
         for pixel in pixels:
