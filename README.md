@@ -1,6 +1,9 @@
 # MonitorBacklight
 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧Pretty Lights✧ﾟ･: *ヽ(◕ヮ◕ヽ)
 
+Current Stage:
+The lights work however they are very slow.  I am currenty looking at ways to improve the speed.
+
 <!-- PROJECT LOGO -->
 <br />
 
