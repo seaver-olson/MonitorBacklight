@@ -49,8 +49,7 @@ class Ordinator:
         """Returns a string of all the colors in the order of the boxes"""
         self.grab()
         return (self.get_average_color(self.top_right)+self.get_average_color(self.top_middle) +  self.get_average_color(self.top_left) + self.get_average_color(self.middle_left) +self.get_average_color(self.bottom_left) +  self.get_average_color(self.bottom_middle) + self.get_average_color(self.bottom_right) +  self.get_average_color(self.middle_right))
-    #example output 255  ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
-    #or 255255255255255255255255255255255255255255255255255255255255255255255255
+        #025255123025255123625255173023255123025255123025254123025253123025255122
 Ord = Ordinator(screen_width,screen_height)
 ser = serial.Serial('/dev/tty.usbmodem14101', 9600)
 while True:
