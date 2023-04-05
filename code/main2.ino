@@ -7,7 +7,7 @@ void setup() {
     //specs: 3 pin 5v RGB LED strip
     Serial.begin(9600);
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);//defines ledtype and pin
-    FastLED.setBrightness(100);
+    FastLED.setBrightness(255);
 }
 String getScreenColor(){
     //ordinator.py will return a string of the color of the screen
@@ -29,14 +29,14 @@ void formatRGB(int * ar, int size, String color){
 void loop(){
     String color = getScreenColor();
     if (color != ""){
-        String top_left = color.substring(0, 9);
-        String top_right = color.substring(9, 18);
-        String bottom_left = color.substring(18, 27);
-        String bottom_right = color.substring(27, 36);
-        String middle_left = color.substring(36, 45);
-        String middle_right = color.substring(45, 54);
-        String top_middle = color.substring(54, 63);
-        String bottom_middle = color.substring(63, 72);
+        String top_right = color.substring(0, 9);
+        String top_middle = color.substring(9, 18);
+        String top_left = color.substring(18, 27);
+        String middle_left = color.substring(27, 36);
+        String bottom_left = color.substring(36, 45);
+        String bottom_middle = color.substring(45, 54);
+        String bottom_right = color.substring(54, 63);
+        String middle_right = color.substring(63, 72);
         //007176211019177211015171206015171205004168204012171205011175210021166199
         int top_left_ar[2];
         formatRGB(top_left_ar, 3, top_left);
