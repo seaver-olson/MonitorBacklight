@@ -2,7 +2,8 @@
 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧Pretty Lights✧ﾟ･: *ヽ(◕ヮ◕ヽ)
 
 Current Stage:
-The lights work however they are very slow.  I am currenty looking at ways to improve the speed of processing the colors of the screen.
+The lights are working!!! The current refresh rate is 1.17 seconds on average, this will hopefully be dropped down to .5 seconds in the near future.
+
 
 <!-- PROJECT LOGO -->
 <br />
