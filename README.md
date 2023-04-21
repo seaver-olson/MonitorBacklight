@@ -38,7 +38,7 @@ The lights are working!!! The current refresh rate is 1.17 seconds on average, t
 
 ### Built With
 
-* [![FastLED][FastLED.h]][https://fastled.io]
+* [[FastLED]][https://fastled.io]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
