@@ -23,20 +23,8 @@ class Ordinator:
         """Uses PIL to get the average color of a box on the screen"""
         pixels = [pixels[x,y] for x in range(box[0],box[2],2) for y in range(box[1],box[3],2)]
         pixels = np.array(pixels)
-
-        #get the average color of the box
-        avg_r = int(np.mean(pixels[:,0]))
-        avg_g = int(np.mean(pixels[:,1]))
-        avg_b = int(np.mean(pixels[:,2]))
-        #if var doesnt have 3 digits add 0s in front
-        if len(str(avg_r)) < 3:
-            avg_r = str(avg_r).zfill(3)
-        if len(str(avg_g)) < 3:
-            avg_g = str(avg_g).zfill(3)
-        if len(str(avg_b)) < 3:
-            avg_b = str(avg_b).zfill(3)
-        #return as rgb ex: 255010255
-        return str(avg_r) + str(avg_g) + str(avg_b)
+        avg_r,avg_g,avg_b  =map(lambda x: x.zfill(3),[str(np.mean(pixels[:,0],dtype=np.int64)),str(np.mean(pixels[:,1],dtype=np.int64)),str(np.mean(pixels[:,2],dtype=np.int64))])
+        return avg_r+ avg_g +avg_b
     #turn get_all_colors into a class method
     def get_all_colors(self):
         """Returns a string of all the colors in the order of the boxes"""
@@ -46,7 +34,7 @@ class Ordinator:
 Ord = Ordinator(screen_width,screen_height)
 
 while True:
-    #ser = serial.Serial('/dev/tty.usbmodem14201', 230400)
-    #ser.write(Ord.get_all_colors().encode())
+    ser = serial.Serial('/dev/tty.usbmodem14201', 230400)
+    ser.write(Ord.get_all_colors().encode())
     print(Ord.get_all_colors())
-    #ser.close()
+    ser.close()
