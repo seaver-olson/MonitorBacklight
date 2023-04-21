@@ -41,11 +41,17 @@ class Ordinator:
     def get_average_color(self,box,pixels):
         """Uses PIL to get the average color of a box on the screen"""
         #get screenshot with all windows that are pulled up not just background
-        #crop to box
-        pixels = np.array(pixels.crop(box))
+        #get all pixels from PIL.load pixels 
+        #start timer
+        ti = time.time()
+        pixels = [pixels[x,y] for x in range(box[0],box[2],2) for y in range(box[1],box[3],2)]
+        #make above line faster
+        print(time.time() - ti)
         #get the average color of the box
         #remove 4th value in array
-        pixels = pixels[:,0:3]
+        pixels = np.array(pixels)
+        #reshape to box
+        #get the average color of the box
         avg_r = int(np.mean(pixels[:,0]))
         avg_g = int(np.mean(pixels[:,1]))
         avg_b = int(np.mean(pixels[:,2]))
@@ -62,7 +68,6 @@ class Ordinator:
     def get_all_colors(self):
         """Returns a string of all the colors in the order of the boxes"""
         self.pixels = (ImageGrab.grab().load())
-        print(self.pixels)
         #print top_left of self.pixels
         return (self.get_average_color(self.top_right,self.pixels)+self.get_average_color(self.top_middle,self.pixels) +  self.get_average_color(self.top_left,self.pixels) + self.get_average_color(self.middle_left,self.pixels) +self.get_average_color(self.bottom_left,self.pixels) +  self.get_average_color(self.bottom_middle,self.pixels) + self.get_average_color(self.bottom_right,self.pixels) +  self.get_average_color(self.middle_right,self.pixels))
     #example output 255  ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
