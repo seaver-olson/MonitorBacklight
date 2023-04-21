@@ -18,39 +18,12 @@ class Ordinator:
         self.middle_right = tuple(map(int, (0.5 * self.screenW, 0.25 * self.screenH, self.screenW, 0.75 * self.screenH)))
         self.top_middle = tuple(map(int, (0.25 * self.screenW, 0, 0.75 * self.screenW, 0.5 * self.screenH)))
         self.bottom_middle = tuple(map(int, (0.25 * self.screenW, 0.5 * self.screenH, 0.75 * self.screenW, self.screenH)))
-        #print every pixel 
-    #turn get_average_color into a class method
-    def get_average_color_3(self,box):
-        """Uses PIL to get the average color of a box on the screen"""
-        #get screenshot with all windows that are pulled up not just background
-        pixels = np.array(ImageGrab.grab().crop(box).getdata())
-        #reshape to box      
-        #get the average color of the box
-        avg_r = int(np.mean(pixels[:,0]))
-        avg_g = int(np.mean(pixels[:,1]))
-        avg_b = int(np.mean(pixels[:,2]))
-        #if var doesnt have 3 digits add 0s in front
-        if len(str(avg_r)) < 3:
-            avg_r = str(avg_r).zfill(3)
-        if len(str(avg_g)) < 3:
-            avg_g = str(avg_g).zfill(3)
-        if len(str(avg_b)) < 3:
-            avg_b = str(avg_b).zfill(3)
-        #return as rgb ex: 255010255
-        return str(avg_r) + str(avg_g) + str(avg_b)
+        self.boxes = [self.top_right,self.top_middle,self.top_left,self.middle_left,self.bottom_left,self.bottom_middle,self.bottom_right,self.middle_right]
     def get_average_color(self,box,pixels):
         """Uses PIL to get the average color of a box on the screen"""
-        #get screenshot with all windows that are pulled up not just background
-        #get all pixels from PIL.load pixels 
-        #start timer
-        ti = time.time()
         pixels = [pixels[x,y] for x in range(box[0],box[2],2) for y in range(box[1],box[3],2)]
-        #make above line faster
-        print(time.time() - ti)
-        #get the average color of the box
-        #remove 4th value in array
         pixels = np.array(pixels)
-        #reshape to box
+
         #get the average color of the box
         avg_r = int(np.mean(pixels[:,0]))
         avg_g = int(np.mean(pixels[:,1]))
@@ -68,10 +41,8 @@ class Ordinator:
     def get_all_colors(self):
         """Returns a string of all the colors in the order of the boxes"""
         self.pixels = (ImageGrab.grab().load())
-        #print top_left of self.pixels
-        return (self.get_average_color(self.top_right,self.pixels)+self.get_average_color(self.top_middle,self.pixels) +  self.get_average_color(self.top_left,self.pixels) + self.get_average_color(self.middle_left,self.pixels) +self.get_average_color(self.bottom_left,self.pixels) +  self.get_average_color(self.bottom_middle,self.pixels) + self.get_average_color(self.bottom_right,self.pixels) +  self.get_average_color(self.middle_right,self.pixels))
-    #example output 255  ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff|ffffff
-    #or 255255255255255255255255255255255255255255255255255255255255255255255255
+        return ''.join(map(self.get_average_color,self.boxes,[self.pixels]*8))
+
 Ord = Ordinator(screen_width,screen_height)
 
 while True:
@@ -79,4 +50,3 @@ while True:
     #ser.write(Ord.get_all_colors().encode())
     print(Ord.get_all_colors())
     #ser.close()
-    time.sleep(0.2)
