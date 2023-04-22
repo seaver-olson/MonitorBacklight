@@ -21,8 +21,12 @@ class Ordinator:
         self.boxes = [self.top_right,self.top_middle,self.top_left,self.middle_left,self.bottom_left,self.bottom_middle,self.bottom_right,self.middle_right]
     def get_average_color(self,box,pixels):
         """Uses PIL to get the average color of a box on the screen"""
-        pixels = [pixels[x,y] for x in range(box[0],box[2],2) for y in range(box[1],box[3],2)]
+        #pixels = [pixels[x,y] for x in range(box[0],box[2],2) for y in range(box[1],box[3],2)]
         pixels = np.array(pixels)
+        subarray = pixels[box[0]:box[2]:2, box[1]:box[3]:2]
+
+        # flatten the subarray into a 1D array
+        pixels = subarray.flatten().tolist()
         avg_r,avg_g,avg_b  =map(lambda x: x.zfill(3),[str(np.mean(pixels[:,0],dtype=np.int64)),str(np.mean(pixels[:,1],dtype=np.int64)),str(np.mean(pixels[:,2],dtype=np.int64))])
         return avg_r+ avg_g +avg_b
     #turn get_all_colors into a class method
