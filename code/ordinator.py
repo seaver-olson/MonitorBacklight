@@ -29,6 +29,15 @@ class Ordinator:
         pixels = subarray.flatten().tolist()
         avg_r,avg_g,avg_b  =map(lambda x: x.zfill(3),[str(np.mean(pixels[:,0],dtype=np.int64)),str(np.mean(pixels[:,1],dtype=np.int64)),str(np.mean(pixels[:,2],dtype=np.int64))])
         return avg_r+ avg_g +avg_b
+    '''
+    def get_average_color(self, box, pixels):
+    """Uses PIL to get the average color of a box on the screen"""
+        pixels = np.array(pixels, dtype=np.uint8)
+        subarray = pixels[box[0]:box[2]:2, box[1]:box[3]:2]
+        avg_r, avg_g, avg_b = map(lambda x: str(int(x)).zfill(3), map(np.mean, [subarray[:,:,i] for i in range(3)]))
+        return avg_r + avg_g + avg_b
+    
+    '''
     #turn get_all_colors into a class method
     def get_all_colors(self):
         """Returns a string of all the colors in the order of the boxes"""
