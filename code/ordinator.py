@@ -22,8 +22,9 @@ class Ordinator:
     def get_average_color(self,box,pixels):
         """Uses PIL to get the average color of a box on the screen"""
         #pixels = [pixels[x,y] for x in range(box[0],box[2],2) for y in range(box[1],box[3],2)]
+        n = 2
         pixels = np.array(pixels)
-        subarray = pixels[box[0]:box[2]:2, box[1]:box[3]:2]
+        subarray = pixels[box[0]:box[2]:n, box[1]:box[3]:n]#get every nth pixel
 
         # flatten the subarray into a 1D array
         pixels = subarray.flatten().tolist()
