@@ -2,9 +2,7 @@
 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧Pretty Lights✧ﾟ･: *ヽ(◕ヮ◕ヽ)
 
 Current Stage:
-The lights are working!!! The current refresh rate is 1.17 seconds on average, this will hopefully be dropped down to .5 seconds in the near future.
-
-
+The lights are currently not working. I was able to boost the refresh rate from 1.27 seconds all the way down to .36 seconds however the lights stopped taking commands.  I'm currently looking into this right now.
 <!-- PROJECT LOGO -->
 <br />
 
