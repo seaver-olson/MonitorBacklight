@@ -2,24 +2,38 @@
 #define NUM_LEDS 128
 #define DATA_PIN 8
 #define part_num NUM_LEDS / 8
+int LED = 9;
 CRGB leds[NUM_LEDS];//create object
+
 void setup() { 
     //specs: 3 pin 5v RGB LED strip
     Serial.begin(9600);
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);//defines ledtype and pin
-    FastLED.setBrightness(255);
+    FastLED.setBrightness(200);
+    pinMode(LED,OUTPUT);
 }
 String getScreenColor(){
     //ordinator.py will return a string of the color of the screen
     //listen for the string once a line is recieved stop listening and take the most recent line
     //return the string
+    //set up single led on pin 9 
+    /*
     if (Serial.available() > 0) {
-        String color = Serial.readStringUntil('\n');
-        return color;
+        return Serial.readString();
     }
     else{
-      return "";
+      digitalWrite(LED,HIGH);
+      delay(1000);
+      digitalWrite(LED,LOW);
+      return Serial.readString();
     }
+    */
+    while (Serial.available() <= 0){
+
+    }
+    String co = Serial.readString();
+    Serial.println(co);
+    return co;
 }
 void formatRGB(int * ar, int size, String color){
     ar[0] = color.substring(0, 3).toInt();
@@ -117,4 +131,5 @@ void loop(){
     }
   FastLED.show();
   delay(200); 
-}}
+}
+}
