@@ -2,7 +2,6 @@
 #define NUM_LEDS 128
 #define DATA_PIN 8
 #define part_num NUM_LEDS / 8
-int LED = 9;
 CRGB leds[NUM_LEDS];//create object
 
 void setup() { 
@@ -10,29 +9,13 @@ void setup() {
     Serial.begin(9600);
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);//defines ledtype and pin
     FastLED.setBrightness(200);
-    pinMode(LED,OUTPUT);
+    delay(1000);
 }
 String getScreenColor(){
-    //ordinator.py will return a string of the color of the screen
-    //listen for the string once a line is recieved stop listening and take the most recent line
-    //return the string
-    //set up single led on pin 9 
-    /*
-    if (Serial.available() > 0) {
-        return Serial.readString();
-    }
-    else{
-      digitalWrite(LED,HIGH);
-      delay(1000);
-      digitalWrite(LED,LOW);
-      return Serial.readString();
-    }
-    */
     while (Serial.available() <= 0){
 
     }
     String co = Serial.readString();
-    Serial.println(co);
     return co;
 }
 void formatRGB(int * ar, int size, String color){
@@ -99,10 +82,7 @@ void loop(){
         int bottom_middle_r = bottom_middle_ar[0];
         int bottom_middle_g = bottom_middle_ar[1];
         int bottom_middle_b = bottom_middle_ar[2];
-
-        Serial.println(top_left_r);
     for (int i = 0; i < part_num; i++){
-        
         leds[i].r = top_left_r;
         leds[i].g = top_left_g;
         leds[i].b = top_left_b;
@@ -127,9 +107,7 @@ void loop(){
         leds[i + part_num * 7].r = bottom_right_r;
         leds[i + part_num * 7].g = bottom_right_g;
         leds[i + part_num * 7].b = bottom_right_b;
-        
     }
   FastLED.show();
-  delay(200); 
 }
 }
