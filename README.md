@@ -60,7 +60,7 @@ Below is an example of how you can set up your led strip.
 1. Clone the repo
    git clone https://github.com/seaver-olson/MonitorBacklight
    
-2. Upload `main2.ino` onto your arduino
+2. Upload `ledControl.ino` onto your arduino
    
 3. setup led strip; `DATA_PIN` is defaulted on 8
 
