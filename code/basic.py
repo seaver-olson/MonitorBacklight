@@ -43,3 +43,4 @@ while True:
     time.sleep(.8)
 ser.close()
 
+
